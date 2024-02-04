@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function SignInPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -32,9 +32,9 @@ function SignInPage() {
                     const jwtToken = data.token;
                     // console.log(data);
                     if (jwtToken) {
-                        Cookies.set("jwtToken", jwtToken);
+                        Cookies.set("jwtToken", jwtToken, { expires: 30 });
                     }
-                    Cookies.set("userdata", JSON.stringify(data));
+                    Cookies.set("userdata", JSON.stringify(data), { expires: 30 });
                     setSignInSuccess(true);
                     setError("");
                 })
