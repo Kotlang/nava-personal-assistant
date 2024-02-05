@@ -5,12 +5,12 @@ import ChatWindow from "../ChatWindow";
 function Layout() {
     return (
         <>
-            <div className="bg-m_black w-full h-dvh ">
+            <div className="bg-m_black w-full h-screen overflow-hidden">
                 <div className="flex">
                     <div className="w-[25%]">
                         <SidePannel />
                     </div>
-                    <div className="w-[70%] relative">
+                    <div className="w-[70%] relative  h-screen">
                         <ProfileHeader />
                         <ChatWindow />
                     </div>

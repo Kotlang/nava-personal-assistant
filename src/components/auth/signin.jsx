@@ -35,7 +35,9 @@ function SignInPage() {
                     if (jwtToken) {
                         Cookies.set("jwtToken", jwtToken, { expires: 30 });
                     }
-                    Cookies.set("userdata", JSON.stringify(data), { expires: 30 });
+                    Cookies.set("userdata", JSON.stringify(data), {
+                        expires: 30,
+                    });
                     setSignInSuccess(true);
                     setError("");
                 })
@@ -86,14 +88,16 @@ function SignInPage() {
                     <button
                         type="submit"
                         disabled={isSigningIn}
-                        className=" bg-green-500 text-white p-2 rounded uppercase w-full text-sm tracking-widest"
+                        className={`bg-green-500 text-white p-2 rounded uppercase w-full text-sm tracking-widest ${isSigningIn ? "opacity-75": ""}`}
                         onClick={handleSignIn}
                     >
                         {isSigningIn ? "Just a Moment" : "Login"}
                     </button>
                 </form>
             </div>
-            <div className="bg-m_black rounded border-2 border-border_white min-w-[25%] text-center py-4">
+            <div
+                className={`bg-m_black rounded border-2 border-border_white min-w-[25%] text-center py-4 `}
+            >
                 <p className="text-sm font-bold text-zinc-600 ">
                     Don't have an account?{" "}
                     <a href="/signup" className="text-white pl-2">

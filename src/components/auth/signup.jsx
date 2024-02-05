@@ -99,7 +99,9 @@ const SignUp = () => {
                     </div>
                     <button
                         type="submit"
-                        className=" bg-green-500 text-white p-2 rounded uppercase w-full text-sm tracking-widest"
+                        className={`bg-green-500 text-white p-2 rounded uppercase w-full text-sm tracking-widest ${
+                            isButtonDisabled ? "opacity-75" : ""
+                        }`}
                         onClick={onSubmit}
                         disabled={isButtonDisabled}
                     >
