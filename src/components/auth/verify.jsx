@@ -25,7 +25,7 @@ const Verify = ({ phoneNumber }) => {
         if (response.status === 200) {
           const jwtToken = response.data.jwt_token;
           if (jwtToken) {
-            Cookies.set("jwtToken", jwtToken);
+            Cookies.set("jwtToken", jwtToken, { expires: 30 });
           }
           setSignInSuccess(true);
         } else {

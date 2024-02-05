@@ -5,6 +5,7 @@ import Layout from "./components/applayout/layout";
 import PrivateRoute from "./components/PrivateRoute";
 import SignUp from "./components/auth/signup";
 import SignInPage from "./components/auth/signin";
+
 function App() {
     return (
         <BrowserRouter>

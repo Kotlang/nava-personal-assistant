@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ResponseMessage from "./ResponseMessage";
 import RequestMessage from "./RequestMessage";
 import send from "../assets/send.png";
 import imageUplaod from "../assets/imageUpload.png";
 import mic from "../assets/mic.png";
 import sendRequest from "../clients/chat";
-function ChatWindow() {
+import * as marked from 'marked';
+
+function ChatWindow() {      
     const [searchInput, setSearchInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [chatSessionId, setChatSessionId] = useState(null);
@@ -14,16 +16,17 @@ function ChatWindow() {
         e.preventDefault();
         const newMessage = { text: searchInput, sender: "user" };
         setMessages([...messages, newMessage]);
+        setSearchInput("");
         const queryRequest = {
             query: searchInput,
         };
         const response = await sendRequest(chatSessionId, queryRequest);
         console.log(response);
         if (response) {
+            const htmlResponse = marked.parse(response.response);
             setChatSessionId(response.chat_session_id);
-            receiveMessageFromAI(response.response);
+            receiveMessageFromAI(htmlResponse);
         }
-        setSearchInput("");
     };
 
     const receiveMessageFromAI = (responseText) => {
@@ -57,7 +60,7 @@ function ChatWindow() {
                         value={searchInput}
                     />
                     <div className="cursor-pointer  absolute right-4 pl-2">
-                        <button onClick={handleSubmit}>
+                        <button onClick={handleSubmit} type="submit">
                             <img src={send} alt="" className="w-5" />
                         </button>
                     </div>
