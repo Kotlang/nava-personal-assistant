@@ -49,7 +49,7 @@ const Verify = ({ phoneNumber }) => {
       <div className="bg-white shadow-md rounded px-8 pb-8 mb-4">
         <h2 className="text-2xl mb-4">Verification</h2>
         <form>
-          <p className="text-red-500 text-sm mb-4">{error}</p>
+          <p className="text-red-300 text-sm mb-4">{error}</p>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"

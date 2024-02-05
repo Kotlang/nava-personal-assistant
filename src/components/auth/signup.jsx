@@ -10,8 +10,11 @@ const SignUp = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [isSignupSuccess, setSignupSuccess] = useState(false);
     const [error, setError] = useState("");
+    const [isButtonDisabled, setButtonDisabled] = useState(false);
+
     const onSubmit = async (e) => {
         e.preventDefault(e);
+        setButtonDisabled(true);
         await axios
             .post(
                 process.env.REACT_APP_API_URL + "/v1/auth/signup",
@@ -31,6 +34,7 @@ const SignUp = () => {
                 if (response.status === 200) {
                     setSignupSuccess(true);
                 }
+                setButtonDisabled(false);
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -39,6 +43,7 @@ const SignUp = () => {
                 setPassword("");
                 setUsername("");
                 setPhoneNumber("");
+                setButtonDisabled(false);
             });
     };
 
@@ -48,9 +53,9 @@ const SignUp = () => {
 
     return (
         <div className="flex items-center justify-center h-screen bg-black flex-col gap-4">
-            <div className="bg-m_black px-12 py-10  rounded border-2 border-border_white w-[25%]">
+            <div className="bg-m_black px-12 py-10  rounded border-2 border-border_white min-w-[25%]">
                 <h2 className="text-2xl font-bold mb-4 text-white">Sign Up</h2>
-                <p className="text-red-500 text-sm mb-4">{error}</p>
+                <p className="text-red-300 text-sm mb-4">{error}</p>
                 <form>
                     <div className="mb-4">
                         <input
@@ -94,14 +99,17 @@ const SignUp = () => {
                     </div>
                     <button
                         type="submit"
-                        className=" bg-green-500 text-white p-2 rounded uppercase w-full text-sm tracking-widest"
+                        className={`bg-green-500 text-white p-2 rounded uppercase w-full text-sm tracking-widest ${
+                            isButtonDisabled ? "opacity-75" : ""
+                        }`}
                         onClick={onSubmit}
+                        disabled={isButtonDisabled}
                     >
                         Sign Up
                     </button>
                 </form>
             </div>
-            <div className="bg-m_black rounded border-2 border-border_white w-[25%] text-center py-4">
+            <div className="bg-m_black rounded border-2 border-border_white min-w-[25%] text-center py-4">
                 <p className="text-sm font-bold text-zinc-600 ">
                     Already have an account?{" "}
                     <a href="/signin" className="text-white pl-2">

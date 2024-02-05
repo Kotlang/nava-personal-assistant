@@ -5,9 +5,9 @@ import send from "../assets/send.png";
 import imageUplaod from "../assets/imageUpload.png";
 import mic from "../assets/mic.png";
 import sendRequest from "../clients/chat";
-import * as marked from 'marked';
+import * as marked from "marked";
 
-function ChatWindow() {      
+function ChatWindow() {
     const [searchInput, setSearchInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [chatSessionId, setChatSessionId] = useState(null);
@@ -60,7 +60,13 @@ function ChatWindow() {
                         value={searchInput}
                     />
                     <div className="cursor-pointer  absolute right-4 pl-2">
-                        <button onClick={handleSubmit} type="submit">
+                        <button
+                            onClick={handleSubmit}
+                            onKeyDown={(e) =>
+                                e.key === "Enter" ? handleSubmit : ""
+                            }
+                            type="submit"
+                        >
                             <img src={send} alt="" className="w-5" />
                         </button>
                     </div>
