@@ -13,6 +13,7 @@ function SignInPage() {
     const handleSignIn = async (e) => {
         e.preventDefault();
         setIsSigningIn(true);
+
         try {
             await axios
                 .post(
@@ -58,7 +59,7 @@ function SignInPage() {
 
     return (
         <div className="flex items-center justify-center h-screen bg-black flex-col gap-4">
-            <div className="bg-m_black px-10 py-12  rounded border-2 border-border_white w-[22%]">
+            <div className="bg-m_black px-10 py-12  rounded border-2 border-border_white min-w-[25%]">
                 <h2 className="text-2xl font-bold mb-4 text-white">Sign In</h2>
                 <p className="text-red-300 text-sm mb-4">{error}</p>
                 <form>
@@ -88,11 +89,11 @@ function SignInPage() {
                         className=" bg-green-500 text-white p-2 rounded uppercase w-full text-sm tracking-widest"
                         onClick={handleSignIn}
                     >
-                        login
+                        {isSigningIn ? "Just a Moment" : "Login"}
                     </button>
                 </form>
             </div>
-            <div className="bg-m_black rounded border-2 border-border_white w-[22%] text-center py-4">
+            <div className="bg-m_black rounded border-2 border-border_white min-w-[25%] text-center py-4">
                 <p className="text-sm font-bold text-zinc-600 ">
                     Don't have an account?{" "}
                     <a href="/signup" className="text-white pl-2">
